@@ -1,0 +1,124 @@
+﻿  private void buttonUPDATE_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (BookContext db = new BookContext())
+                {
+                    switch (comboIN.Text)
+                    {
+                        case ("Id"):
+                            {
+                                var textin = Convert.ToInt32(textIN.Text);
+                                var textout = Convert.ToInt32(textOUT.Text);
+
+                                var Update = db.Books.SingleOrDefault(b => b.Id == textin);
+                                if (Update != null)
+                                {
+                                    // UpdateHelper(Update);
+                                    Update.TheBookName = "Рандом нах.";
+                                    db.SaveChanges();
+                                
+                                }
+
+                                break; 
+                            }
+                            case ("Name"):
+                            {
+                                var textin = Convert.ToInt32(textIN.Text);
+                                var textout = Convert.ToInt32(textOUT.Text);
+
+                                var Update = db.Books.SingleOrDefault(b => b.TheBookName == textIN.Text);
+                                if (Update != null)
+                                {
+
+                                    UpdateHelper(Update);
+                                    db.SaveChanges();
+                                
+                                }
+
+                                break; 
+                            }
+                              case ("Author"):
+                            {
+                                var textin = Convert.ToInt32(textIN.Text);
+                                var textout = Convert.ToInt32(textOUT.Text);
+
+                                var Update = db.Books.SingleOrDefault(b => b.TheBookAuthor == textIN.Text);
+                                if (Update != null)
+                                {
+
+                                    UpdateHelper(Update);
+                                    db.SaveChanges();
+                                
+                                }
+
+                                break;
+                            }
+                               
+                        case ("PageOfNumber"):
+                            {
+                                var textin = Convert.ToInt32(textIN.Text);
+                                var textout = Convert.ToInt32(textOUT.Text);
+
+                                var Update = db.Books.SingleOrDefault(b => b.TheBookNumberOfPages == textin);
+                                if (Update != null)
+                                {
+                                    UpdateHelper(Update);
+                                    db.SaveChanges();
+
+                                }
+
+                                break;
+                            }
+                        case ("Valuation"):
+                            {
+                                var textin = Convert.ToInt32(textIN.Text);
+                                var textout = Convert.ToInt32(textOUT.Text);
+
+                                var Update = db.Books.SingleOrDefault(b => b.TheBookValuation == textIN.Text);
+                                if (Update != null)
+                                {
+
+                                    UpdateHelper(Update);
+                                    db.SaveChanges();
+
+                                }
+
+                                break;
+                            }
+
+
+
+                    }
+                }
+            }
+            catch (Exception exception)
+            { MessageBox.Show("Ошибка:" + exception.Message); }
+
+            void UpdateHelper(Book update)
+            {
+                var textin = Convert.ToInt32(textIN.Text);
+                var textout = Convert.ToInt32(textOUT.Text);
+
+                switch (comboOUT.Text)
+                {
+                    case "Id":
+                        update.Id = textout;
+                        break;
+                    case "Name":
+                        update.TheBookName = textOUT.Text;
+                        break;
+                    case "Author":
+                        update.TheBookAuthor = textOUT.Text;
+                        break;
+                    case "PageOfNumber":
+                        update.TheBookNumberOfPages = textout;
+                        break;
+                    case "Valuation":
+                        update.TheBookValuation = textOUT.Text;
+                        break;
+
+                }
+            }
+
+        } // ПОТОМ ЗАЙМИСЬ ЭТИМ. НЕ ЗАБУДЬ. 

@@ -1,0 +1,29 @@
+﻿ void TableOut()
+        {
+            try
+            {
+                using (BookContext db = new BookContext())
+                {
+                    var books = db.Books;
+                      Console.WriteLine("Objects list: ");
+                      labelTableResult.Text = "Table:";
+
+                    var listviewitem = new ListViewItem();
+
+
+                    foreach (Book b in books)
+                    {
+                        labelTableResult.Text += ($"\n {b.Id}.{b.TheBookName} - {b.TheBookAuthor} - { b.TheBookNumberOfPages} = {b.TheBookValuation}");
+                    }
+                }
+            }
+            catch(Exception exceprion)
+            {
+                MessageBox.Show($"Ошибка: {exceprion}");
+            }
+
+            
+        }
+
+
+
